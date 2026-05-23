@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+/* This is the magic line required for Tailwind v4 to allow manual Dark Mode switching */
+@custom-variant dark (&:is(.dark *));
+
+html {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  /* We use @apply so Tailwind can dynamically swap these colors when Dark Mode triggers */
+  @apply bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-50 transition-colors duration-300;
+  
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Crisp Zinc Scrollbar (Now with Dark Mode support!) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-zinc-300 dark:bg-zinc-700;
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-zinc-400 dark:bg-zinc-600;
+}
